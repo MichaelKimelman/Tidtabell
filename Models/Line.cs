@@ -8,7 +8,7 @@ namespace Tidtabell.Models
         public string Destination { get; set; }
         public int Number { get; set; }
 
-        public List<LineStops> LineStops { get; set; }
-        public List<LineTimes> LineTimes { get; set; }
+        public List<LineStops>? LineStops { get; set; }
+        public List<LineTimes>? LineTimes { get; set; }
     }
 }

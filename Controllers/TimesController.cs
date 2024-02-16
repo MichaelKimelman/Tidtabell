@@ -58,6 +58,11 @@ namespace Tidtabell.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,ClockTime")] Time time)
         {
+            if(_context.Time.ToList().Exists(x => x.ClockTime.Hour == time.ClockTime.Hour && x.ClockTime.Minute == time.ClockTime.Minute))
+            {
+                ModelState.AddModelError("Error", "Time Already Exists");
+                return View(time);
+            }
             if (ModelState.IsValid)
             {
                 _context.Add(time);
@@ -94,6 +99,14 @@ namespace Tidtabell.Controllers
             {
                 return NotFound();
             }
+
+            if (_context.Time.ToList().Exists(x => x.ClockTime.Hour == time.ClockTime.Hour && x.ClockTime.Minute == time.ClockTime.Minute))
+            {
+                ModelState.AddModelError("Error", "Time Already Exists");
+                return View(time);
+            }
+
+            _context.ChangeTracker.Clear();//CLEARS TRACKING FROM ABOVE IF EXISTS CHECK, OTHERWISE INVALIDOPERATIONERROR
 
             if (ModelState.IsValid)
             {

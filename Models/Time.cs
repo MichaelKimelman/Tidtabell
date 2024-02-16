@@ -1,4 +1,5 @@
-﻿using Tidtabell.Models.Join_Tables;
+﻿using Tidtabell.Data.Helper;
+using Tidtabell.Models.Join_Tables;
 
 namespace Tidtabell.Models
 {
@@ -7,8 +8,8 @@ namespace Tidtabell.Models
         public int Id { get; set; }
         public DateTime ClockTime { get; set; }
 
-        public List<LineTimes> LineTimes { get; set; }
-        public List<StopTimes> StopTimes { get; set; }
+        public List<LineTimes>? LineTimes { get; set; }
+        public List<StopTimes>? StopTimes { get; set; }
 
     }
 }
