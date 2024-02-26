@@ -7,6 +7,9 @@
         public Line Line { get; set; }
         public int StopId { get; set; }
         public Stop Stop { get; set; }
+        public int StopPosition { get; set; }
+        public DateTime Time { get; set; }
+        public bool Reverse { get; set; }
 
     }
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tidtabell.Data;
 
@@ -11,9 +12,11 @@ using Tidtabell.Data;
 namespace Tidtabell.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240219073131_LineStopStopPosition")]
+    partial class LineStopStopPosition
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -235,17 +238,11 @@ namespace Tidtabell.Data.Migrations
                     b.Property<int>("LineId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("Reverse")
-                        .HasColumnType("bit");
-
                     b.Property<int>("StopId")
                         .HasColumnType("int");
 
                     b.Property<int>("StopPosition")
                         .HasColumnType("int");
-
-                    b.Property<DateTime>("Time")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -256,6 +253,52 @@ namespace Tidtabell.Data.Migrations
                     b.ToTable("LineStops");
                 });
 
+            modelBuilder.Entity("Tidtabell.Models.Join_Tables.LineTimes", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("LineId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TimeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LineId");
+
+                    b.HasIndex("TimeId");
+
+                    b.ToTable("LineTimes");
+                });
+
+            modelBuilder.Entity("Tidtabell.Models.Join_Tables.StopTimes", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("StopId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TimeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StopId");
+
+                    b.HasIndex("TimeId");
+
+                    b.ToTable("StopTimes");
+                });
+
             modelBuilder.Entity("Tidtabell.Models.Line", b =>
                 {
                     b.Property<int>("Id")
@@ -263,6 +306,10 @@ namespace Tidtabell.Data.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Destination")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Number")
                         .HasColumnType("int");
@@ -375,14 +422,63 @@ namespace Tidtabell.Data.Migrations
                     b.Navigation("Stop");
                 });
 
+            modelBuilder.Entity("Tidtabell.Models.Join_Tables.LineTimes", b =>
+                {
+                    b.HasOne("Tidtabell.Models.Line", "Line")
+                        .WithMany("LineTimes")
+                        .HasForeignKey("LineId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Tidtabell.Models.Time", "Time")
+                        .WithMany("LineTimes")
+                        .HasForeignKey("TimeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Line");
+
+                    b.Navigation("Time");
+                });
+
+            modelBuilder.Entity("Tidtabell.Models.Join_Tables.StopTimes", b =>
+                {
+                    b.HasOne("Tidtabell.Models.Stop", "Stop")
+                        .WithMany("StopTimes")
+                        .HasForeignKey("StopId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Tidtabell.Models.Time", "Time")
+                        .WithMany("StopTimes")
+                        .HasForeignKey("TimeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Stop");
+
+                    b.Navigation("Time");
+                });
+
             modelBuilder.Entity("Tidtabell.Models.Line", b =>
                 {
                     b.Navigation("LineStops");
+
+                    b.Navigation("LineTimes");
                 });
 
             modelBuilder.Entity("Tidtabell.Models.Stop", b =>
                 {
                     b.Navigation("LineStops");
+
+                    b.Navigation("StopTimes");
+                });
+
+            modelBuilder.Entity("Tidtabell.Models.Time", b =>
+                {
+                    b.Navigation("LineTimes");
+
+                    b.Navigation("StopTimes");
                 });
 #pragma warning restore 612, 618
         }

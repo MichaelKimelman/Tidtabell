@@ -56,7 +56,7 @@ namespace Tidtabell.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Destination,Number")] Line line)
+        public async Task<IActionResult> Create([Bind("Id,Number")] Line line)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +88,7 @@ namespace Tidtabell.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Destination,Number")] Line line)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Number")] Line line)
         {
             if (id != line.Id)
             {

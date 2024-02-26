@@ -68,26 +68,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGluZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kimel/Documents/GitHub/Tidtabell/Views/LineTimes/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGluZVRpbWVzXENyZWF0ZS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/kimel/Documents/GitHub/Tidtabell/Views/LineTimes/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGluZVRpbWVzXERlbGV0ZS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/kimel/Documents/GitHub/Tidtabell/Views/LineTimes/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGluZVRpbWVzXERldGFpbHMuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/kimel/Documents/GitHub/Tidtabell/Views/LineTimes/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGluZVRpbWVzXEVkaXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/kimel/Documents/GitHub/Tidtabell/Views/LineTimes/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGluZVRpbWVzXEluZGV4LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/kimel/Documents/GitHub/Tidtabell/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -118,26 +98,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/kimel/Documents/GitHub/Tidtabell/Views/Stops/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcHNcSW5kZXguY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/kimel/Documents/GitHub/Tidtabell/Views/StopTimes/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcFRpbWVzXENyZWF0ZS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/kimel/Documents/GitHub/Tidtabell/Views/StopTimes/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcFRpbWVzXERlbGV0ZS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/kimel/Documents/GitHub/Tidtabell/Views/StopTimes/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcFRpbWVzXERldGFpbHMuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/kimel/Documents/GitHub/Tidtabell/Views/StopTimes/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcFRpbWVzXEVkaXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/kimel/Documents/GitHub/Tidtabell/Views/StopTimes/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcFRpbWVzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/kimel/Documents/GitHub/Tidtabell/Views/Times/Create.cshtml]

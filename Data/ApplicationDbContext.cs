@@ -20,7 +20,5 @@ namespace Tidtabell.Data
         public DbSet<Tidtabell.Models.Stop> Stop { get; set; } = default!;
         public DbSet<Tidtabell.Models.Time> Time { get; set; } = default!;
         public DbSet<Tidtabell.Models.Join_Tables.LineStops> LineStops { get; set; } = default!;
-        public DbSet<Tidtabell.Models.Join_Tables.LineTimes> LineTimes { get; set; } = default!;
-        public DbSet<Tidtabell.Models.Join_Tables.StopTimes> StopTimes { get; set; } = default!;
     }
 }

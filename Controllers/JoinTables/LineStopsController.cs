@@ -49,8 +49,8 @@ namespace Tidtabell.Controllers.JoinTables
         // GET: LineStops/Create
         public IActionResult Create()
         {
-            ViewData["LineId"] = new SelectList(_context.Line, "Id", "Id");
-            ViewData["StopId"] = new SelectList(_context.Stop, "Id", "Id");
+            ViewData["LineId"] = new SelectList(_context.Line, "Id", "Number");
+            ViewData["StopId"] = new SelectList(_context.Stop, "Id", "Name");
             return View();
         }
 
@@ -59,7 +59,7 @@ namespace Tidtabell.Controllers.JoinTables
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,LineId,StopId")] LineStops lineStops)
+        public async Task<IActionResult> Create([Bind("Id,LineId,StopId,StopPosition,Time,Reverse")] LineStops lineStops)
         {
             if (ModelState.IsValid)
             {
@@ -67,8 +67,8 @@ namespace Tidtabell.Controllers.JoinTables
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["LineId"] = new SelectList(_context.Line, "Id", "Id", lineStops.LineId);
-            ViewData["StopId"] = new SelectList(_context.Stop, "Id", "Id", lineStops.StopId);
+            ViewData["LineId"] = new SelectList(_context.Line, "Id", "Number", lineStops.LineId);
+            ViewData["StopId"] = new SelectList(_context.Stop, "Id", "Name", lineStops.StopId);
             return View(lineStops);
         }
 
@@ -85,8 +85,8 @@ namespace Tidtabell.Controllers.JoinTables
             {
                 return NotFound();
             }
-            ViewData["LineId"] = new SelectList(_context.Line, "Id", "Id", lineStops.LineId);
-            ViewData["StopId"] = new SelectList(_context.Stop, "Id", "Id", lineStops.StopId);
+            ViewData["LineId"] = new SelectList(_context.Line, "Id", "Number", lineStops.LineId);
+            ViewData["StopId"] = new SelectList(_context.Stop, "Id", "Name", lineStops.StopId);
             return View(lineStops);
         }
 
@@ -95,7 +95,7 @@ namespace Tidtabell.Controllers.JoinTables
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,LineId,StopId")] LineStops lineStops)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,LineId,StopId,StopPosition,Time,Reverse")] LineStops lineStops)
         {
             if (id != lineStops.Id)
             {
@@ -122,8 +122,8 @@ namespace Tidtabell.Controllers.JoinTables
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["LineId"] = new SelectList(_context.Line, "Id", "Id", lineStops.LineId);
-            ViewData["StopId"] = new SelectList(_context.Stop, "Id", "Id", lineStops.StopId);
+            ViewData["LineId"] = new SelectList(_context.Line, "Id", "Number", lineStops.LineId);
+            ViewData["StopId"] = new SelectList(_context.Stop, "Id", "Name", lineStops.StopId);
             return View(lineStops);
         }
 

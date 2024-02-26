@@ -24,6 +24,21 @@
                 <span asp-validation-for="StopId" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="StopPosition" class="control-label"></label>
+                <input asp-for="StopPosition" class="form-control" />
+                <span asp-validation-for="StopPosition" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Time" class="control-label"></label>
+                <input type="time" asp-for="Time" class="form-control" />
+                <span asp-validation-for="Time" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Reverse" /> @Html.DisplayNameFor(model => model.Reverse)
+                </label>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>

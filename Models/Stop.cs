@@ -7,6 +7,5 @@ namespace Tidtabell.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public List<LineStops>? LineStops { get; set; }
-        public List<StopTimes>? StopTimes { get; set; }
     }
 }
