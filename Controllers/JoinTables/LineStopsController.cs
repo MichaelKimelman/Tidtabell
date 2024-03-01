@@ -22,8 +22,11 @@ namespace Tidtabell.Controllers.JoinTables
         // GET: LineStops
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.LineStops.Include(l => l.Line).Include(l => l.Stop);
-            return View(await applicationDbContext.ToListAsync());
+            ViewData["Lines"] = _context.Line.ToList();
+            ViewData["Stops"] = _context.Stop.ToList();
+            return _context.LineStops != null ? 
+                          View(await _context.LineStops.ToListAsync()) :
+                          Problem("Entity set 'ApplicationDbContext.LineStops'  is null.");
         }
 
         // GET: LineStops/Details/5
@@ -35,8 +38,6 @@ namespace Tidtabell.Controllers.JoinTables
             }
 
             var lineStops = await _context.LineStops
-                .Include(l => l.Line)
-                .Include(l => l.Stop)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (lineStops == null)
             {
@@ -61,14 +62,15 @@ namespace Tidtabell.Controllers.JoinTables
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,LineId,StopId,StopPosition,Time,Reverse")] LineStops lineStops)
         {
+
             if (ModelState.IsValid)
             {
                 _context.Add(lineStops);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["LineId"] = new SelectList(_context.Line, "Id", "Number", lineStops.LineId);
-            ViewData["StopId"] = new SelectList(_context.Stop, "Id", "Name", lineStops.StopId);
+            ViewData["LineId"] = new SelectList(_context.Line, "Id", "Number");
+            ViewData["StopId"] = new SelectList(_context.Stop, "Id", "Name");
             return View(lineStops);
         }
 
@@ -85,8 +87,6 @@ namespace Tidtabell.Controllers.JoinTables
             {
                 return NotFound();
             }
-            ViewData["LineId"] = new SelectList(_context.Line, "Id", "Number", lineStops.LineId);
-            ViewData["StopId"] = new SelectList(_context.Stop, "Id", "Name", lineStops.StopId);
             return View(lineStops);
         }
 
@@ -122,8 +122,6 @@ namespace Tidtabell.Controllers.JoinTables
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["LineId"] = new SelectList(_context.Line, "Id", "Number", lineStops.LineId);
-            ViewData["StopId"] = new SelectList(_context.Stop, "Id", "Name", lineStops.StopId);
             return View(lineStops);
         }
 
@@ -136,8 +134,6 @@ namespace Tidtabell.Controllers.JoinTables
             }
 
             var lineStops = await _context.LineStops
-                .Include(l => l.Line)
-                .Include(l => l.Stop)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (lineStops == null)
             {

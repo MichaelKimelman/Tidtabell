@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<Tidtabell.Models.Join_Tables.LineStops>
+@using Tidtabell.Models
 
 @{
     ViewData["Title"] = "Index";
@@ -13,10 +14,19 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Line)
+                @Html.DisplayNameFor(model => model.Id)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Stop)
+                @Html.DisplayNameFor(model => model.LineId)
+            </th>
+            <th>
+                Line
+            </th>
+            <th>
+                Stop
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StopId)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.StopPosition)
@@ -34,16 +44,29 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Line.Id)
+                @Html.DisplayFor(modelItem => item.Id)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Stop.Id)
+                @Html.DisplayFor(modelItem => item.LineId)
+            </td>
+                
+            <td>
+                @(((List<Line>)ViewBag.Lines).FirstOrDefault(modelItem => modelItem.Id == item.LineId).Number)
+                
+            </td>
+            <td>
+                @(((List<Stop>)ViewBag.Stops).FirstOrDefault(modelItem => modelItem.Id == item.StopId).Name)
+
+            </td>
+                 
+            <td>
+                @Html.DisplayFor(modelItem => item.StopId)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.StopPosition)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Time)
+                    @((item.Time.Hour < 10 ? "0" + item.Time.Hour : item.Time.Hour) + ":" + (item.Time.Minute < 10 ? "0" + item.Time.Minute : item.Time.Minute))
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Reverse)

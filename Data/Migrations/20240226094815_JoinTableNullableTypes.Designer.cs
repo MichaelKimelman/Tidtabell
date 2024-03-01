@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tidtabell.Data;
 
@@ -11,9 +12,11 @@ using Tidtabell.Data;
 namespace Tidtabell.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240226094815_JoinTableNullableTypes")]
+    partial class JoinTableNullableTypes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -358,17 +361,21 @@ namespace Tidtabell.Data.Migrations
 
             modelBuilder.Entity("Tidtabell.Models.Join_Tables.LineStops", b =>
                 {
-                    b.HasOne("Tidtabell.Models.Line", null)
+                    b.HasOne("Tidtabell.Models.Line", "Line")
                         .WithMany("LineStops")
                         .HasForeignKey("LineId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Tidtabell.Models.Stop", null)
+                    b.HasOne("Tidtabell.Models.Stop", "Stop")
                         .WithMany("LineStops")
                         .HasForeignKey("StopId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Line");
+
+                    b.Navigation("Stop");
                 });
 
             modelBuilder.Entity("Tidtabell.Models.Line", b =>
